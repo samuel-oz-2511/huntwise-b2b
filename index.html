@@ -968,132 +968,380 @@
             color: #2563EB;
         }
 
-        /* Journey: Job Detail / Actions */
-        .jv-detail { padding: 20px; }
+        /* Journey: Why You Match Modal */
+        .jv-match-modal { padding: 20px; }
 
-        .jv-detail-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            margin-bottom: 20px;
-        }
-
-        .jv-detail-logo {
-            width: 44px;
-            height: 44px;
-            background: var(--border-light);
-            border-radius: 10px;
+        .jv-modal-header {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: var(--text-light);
-            flex-shrink: 0;
+            justify-content: space-between;
+            margin-bottom: 6px;
         }
 
-        .jv-detail-info h4 {
+        .jv-modal-title {
             font-size: 16px;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--text-dark);
         }
 
-        .jv-detail-info .sub {
+        .jv-modal-subtitle {
             font-size: 12px;
             color: var(--text-muted);
+            margin-bottom: 12px;
         }
 
-        .jv-detail-match {
-            display: inline-block;
-            background: #DCFCE7;
-            color: #16A34A;
+        .jv-modal-hint {
+            background: #EFF6FF;
+            border: 1px solid #BFDBFE;
+            border-radius: 8px;
+            padding: 10px 14px;
             font-size: 12px;
-            font-weight: 700;
-            padding: 3px 10px;
-            border-radius: 6px;
-            margin-top: 4px;
-        }
-
-        .jv-actions {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
+            color: #1E40AF;
+            line-height: 1.5;
             margin-bottom: 16px;
         }
 
-        .jv-action {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 12px 8px;
-            text-align: center;
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--text-light);
+        .jv-modal-tabs {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
+            gap: 0;
+            border-bottom: 2px solid var(--border-light);
+            margin-bottom: 16px;
         }
 
-        .jv-action svg {
-            width: 18px;
-            height: 18px;
-            stroke: var(--text-light);
-            fill: none;
-            stroke-width: 2;
-            stroke-linecap: round;
-        }
-
-        .jv-action.highlight {
-            border-color: var(--primary-50);
-            color: var(--primary);
-            background: var(--primary-light);
-        }
-
-        .jv-action.highlight svg {
-            stroke: var(--primary);
-        }
-
-        .jv-feature-tabs {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 6px;
-            background: var(--border-light);
-            border-radius: 10px;
-            padding: 4px;
-        }
-
-        .jv-ftab {
-            padding: 10px 6px;
-            text-align: center;
-            font-size: 11px;
+        .jv-mtab {
+            padding: 8px 14px;
+            font-size: 12px;
             font-weight: 600;
             color: var(--text-muted);
-            border-radius: 8px;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            cursor: default;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 4px;
+            gap: 5px;
         }
 
-        .jv-ftab.active {
-            background: var(--white);
+        .jv-mtab.active {
             color: var(--primary);
-            box-shadow: var(--shadow-sm);
+            border-bottom-color: var(--primary);
         }
 
-        .jv-ftab.highlight {
-            background: var(--primary-light);
-            color: var(--primary);
-        }
-
-        .jv-ftab svg {
-            width: 16px;
-            height: 16px;
+        .jv-mtab svg {
+            width: 14px;
+            height: 14px;
             stroke: currentColor;
             fill: none;
             stroke-width: 2;
             stroke-linecap: round;
+        }
+
+        /* Overview Tab Content */
+        .jv-score-display {
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .jv-score-big {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        .jv-score-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .jv-score-badge {
+            display: inline-block;
+            background: #DCFCE7;
+            color: #16A34A;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 12px;
+            border-radius: 100px;
+            margin-top: 6px;
+        }
+
+        .jv-score-breakdown {
+            margin-top: 12px;
+        }
+
+        .jv-score-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            font-size: 12px;
+        }
+
+        .jv-score-row .label { color: var(--text-light); font-weight: 500; }
+        .jv-score-row .label-sub { color: var(--text-muted); font-size: 11px; margin-left: 4px; }
+        .jv-score-row .value { font-weight: 700; color: var(--text-dark); }
+        .jv-score-row .value.neg { color: var(--red); }
+        .jv-score-row.total {
+            border-top: 1px solid var(--border);
+            margin-top: 4px;
+            padding-top: 8px;
+        }
+
+        /* Skills Tab Content */
+        .jv-skills-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .jv-skills-count {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .jv-skills-pct {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .jv-skills-bar {
+            height: 5px;
+            background: var(--border-light);
+            border-radius: 3px;
+            margin-bottom: 14px;
+            overflow: hidden;
+        }
+
+        .jv-skills-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        .jv-skill-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .jv-skill-item:last-child { border-bottom: none; }
+
+        .jv-skill-check {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .jv-skill-check.matched { background: #DCFCE7; color: #16A34A; }
+        .jv-skill-check.missing { background: var(--red-bg); color: var(--red); }
+
+        .jv-skill-check svg {
+            width: 11px;
+            height: 11px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 3;
+            stroke-linecap: round;
+        }
+
+        .jv-skill-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .jv-skill-evidence {
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* Strengths Tab Content */
+        .jv-strength-item {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .jv-strength-item:last-child { border-bottom: none; }
+
+        .jv-strength-title {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .jv-strength-title svg {
+            width: 14px;
+            height: 14px;
+            stroke: #F59E0B;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+        }
+
+        .jv-strength-desc {
+            font-size: 11px;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* Gaps Tab Content */
+        .jv-gap-item {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .jv-gap-item:last-child { border-bottom: none; }
+
+        .jv-gap-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .jv-gap-title .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #F59E0B;
+        }
+
+        .jv-gap-desc {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .jv-gap-tip {
+            background: var(--primary-light);
+            border-radius: 6px;
+            padding: 8px 10px;
+            font-size: 11px;
+            color: var(--primary);
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        /* Journey: CV Generation */
+        .jv-cv-gen { padding: 20px; text-align: center; }
+
+        .jv-cv-preview {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .jv-cv-page {
+            width: 100px;
+            height: 130px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            padding: 10px 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            position: relative;
+        }
+
+        .jv-cv-page .cv-line {
+            height: 3px;
+            background: var(--border-light);
+            border-radius: 2px;
+        }
+
+        .jv-cv-page .cv-line.title {
+            background: var(--text-dark);
+            width: 60%;
+            height: 4px;
+            margin-bottom: 2px;
+        }
+
+        .jv-cv-page .cv-line.primary {
+            background: var(--primary);
+            width: 75%;
+        }
+
+        .jv-cv-page .cv-line.short { width: 50%; }
+        .jv-cv-page .cv-line.med { width: 70%; }
+        .jv-cv-page .cv-line.long { width: 90%; }
+
+        .jv-cv-label-badge {
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: #fff;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .jv-cv-label-badge.ats { background: var(--green); }
+
+        .jv-cv-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .jv-cv-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .jv-cv-checks {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 12px;
+            text-align: left;
+        }
+
+        .jv-cv-check {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .jv-cv-check svg {
+            width: 13px;
+            height: 13px;
+            stroke: var(--green);
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            flex-shrink: 0;
         }
 
         /* ─── TESTIMONIAL ─── */
@@ -1544,55 +1792,180 @@
                 </div>
             </div>
 
-            <!-- Step 5: Analyze + Generate CV -->
+            <!-- Step 5: Why You Match — Deep Analysis -->
             <div class="journey-step">
                 <div class="journey-text">
                     <div class="journey-num">Step 5</div>
-                    <h3>Understand gaps, generate a tailored CV, apply</h3>
-                    <p>For any job, employees see <strong>"My Chances"</strong> &mdash; not just why they match, but where they fall short and how to address it. Then they <strong>generate an ATS-optimized CV</strong> tailored to that specific role. They can't apply without one &mdash; ensuring every application is their best shot. Track everything from save to interview, built in.</p>
+                    <h3>"Why not 100%?" &mdash; full transparency</h3>
+                    <p>For any job, employees tap <strong>"Why You Match"</strong> and get a deep, personalized analysis across four dimensions: an <strong>overview</strong> with score breakdown, <strong>skills</strong> mapped against the JD, <strong>strengths</strong> they didn't know they had, and <strong>gaps</strong> with practical tips to address them before the interview.</p>
                 </div>
                 <div class="journey-visual">
                     <div class="jv-bar"><div class="jv-dot"></div><div class="jv-dot"></div><div class="jv-dot"></div></div>
-                    <div class="jv-body jv-detail">
-                        <div class="jv-detail-header">
-                            <div class="jv-detail-logo">IC</div>
-                            <div class="jv-detail-info">
-                                <h4>IC Production Manager</h4>
-                                <div class="sub">Amazon Web Services (AWS) &middot; Haifa, Israel</div>
-                                <div class="jv-detail-match">Very Good</div>
+                    <div class="jv-body jv-match-modal">
+                        <div class="jv-modal-title">Why You Match</div>
+                        <div class="jv-modal-subtitle">Director Of Talent Acquisition at Appely</div>
+                        <div class="jv-modal-hint">You are a highly experienced executive and founder with deep leadership roots, though your CV requires more explicit mapping to technical recruitment metrics.</div>
+
+                        <div class="jv-modal-tabs">
+                            <div class="jv-mtab active">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                                Overview
+                            </div>
+                            <div class="jv-mtab">
+                                <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                                Skills
+                            </div>
+                            <div class="jv-mtab">
+                                <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                                Strengths
+                            </div>
+                            <div class="jv-mtab">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+                                Gaps
                             </div>
                         </div>
-                        <div class="jv-actions">
-                            <div class="jv-action">
-                                <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
-                                Save
+
+                        <!-- Overview content -->
+                        <div class="jv-score-display">
+                            <div class="jv-score-big">82%</div>
+                            <div class="jv-score-label">Match Score</div>
+                            <div class="jv-score-badge">Very Good Chance</div>
+                        </div>
+
+                        <div class="jv-score-breakdown">
+                            <div class="jv-score-row">
+                                <span class="label">Base Score</span>
+                                <span class="value">95</span>
                             </div>
-                            <div class="jv-action">
-                                <svg viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>
-                                Applied
+                            <div class="jv-score-row">
+                                <span class="label">Adtech domain expertise<span class="label-sub"></span></span>
+                                <span class="value neg">-8</span>
                             </div>
-                            <div class="jv-action">
-                                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-                                Interview
+                            <div class="jv-score-row">
+                                <span class="label">Recruitment metrics analysis<span class="label-sub"></span></span>
+                                <span class="value neg">-5</span>
                             </div>
-                            <div class="jv-action">
-                                <svg viewBox="0 0 24 24"><path d="M21 8v13H3V8M1 3h22v5H1zM10 12h4"/></svg>
-                                Archive
+                            <div class="jv-score-row total">
+                                <span class="label" style="font-weight:700;color:var(--text-dark);">Final Score</span>
+                                <span class="value" style="color:var(--primary);font-size:14px;">82%</span>
                             </div>
                         </div>
-                        <div class="jv-feature-tabs">
-                            <div class="jv-ftab active">
-                                <svg viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-                                My Chances
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5b: Skills + Strengths + Gaps detail -->
+            <div class="journey-step reverse">
+                <div class="journey-text">
+                    <div class="journey-num">Step 5 &mdash; continued</div>
+                    <h3>Skills, strengths &amp; actionable gap tips</h3>
+                    <p>The <strong>Skills</strong> tab maps every skill from the JD against the candidate's experience with evidence. <strong>Strengths</strong> surfaces hidden advantages they'd never think to highlight. <strong>Gaps</strong> gives specific, practical tips to close each gap &mdash; so they walk into interviews prepared, not clueless.</p>
+                </div>
+                <div class="journey-visual">
+                    <div class="jv-bar"><div class="jv-dot"></div><div class="jv-dot"></div><div class="jv-dot"></div></div>
+                    <div class="jv-body" style="padding: 20px;">
+
+                        <!-- Skills mini -->
+                        <div style="margin-bottom: 16px;">
+                            <div class="jv-skills-header">
+                                <span class="jv-skills-count">5/7 skills matched</span>
+                                <span class="jv-skills-pct">71%</span>
                             </div>
-                            <div class="jv-ftab highlight">
-                                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                                Generate CV
+                            <div class="jv-skills-bar">
+                                <div class="jv-skills-fill" style="width: 71%;"></div>
                             </div>
-                            <div class="jv-ftab">
-                                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg>
-                                Cover Letter
+                            <div class="jv-skill-item">
+                                <div class="jv-skill-check matched"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+                                <div>
+                                    <div class="jv-skill-name">Talent Acquisition For Technical Roles</div>
+                                    <div class="jv-skill-evidence">Founded TechRuiter IL, directing a team of 7 headhunters to connect technical talent</div>
+                                </div>
                             </div>
+                            <div class="jv-skill-item">
+                                <div class="jv-skill-check matched"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+                                <div>
+                                    <div class="jv-skill-name">Team Leadership</div>
+                                    <div class="jv-skill-evidence">Managed teams of 7+ at TechRuiter IL and Realo, providing mentorship</div>
+                                </div>
+                            </div>
+                            <div class="jv-skill-item">
+                                <div class="jv-skill-check missing"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+                                <div>
+                                    <div class="jv-skill-name">Recruitment Metrics Analysis</div>
+                                    <div class="jv-skill-evidence" style="color: var(--red);">Not explicitly detailed in your recent roles</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Strengths mini -->
+                        <div style="margin-bottom: 14px;">
+                            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--primary);margin-bottom:8px;">Strengths</div>
+                            <div class="jv-strength-item">
+                                <div class="jv-strength-title">
+                                    <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                                    You Build From Zero
+                                </div>
+                                <div class="jv-strength-desc">You've built and scaled organizations from scratch &mdash; TechRuiter IL, Upsold. This demonstrates strategic vision and entrepreneurial grit.</div>
+                            </div>
+                        </div>
+
+                        <!-- Gaps mini -->
+                        <div>
+                            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--red);margin-bottom:8px;">Gaps &amp; Tips</div>
+                            <div class="jv-gap-item">
+                                <div class="jv-gap-title"><span class="dot"></span> Adtech Domain Expertise</div>
+                                <div class="jv-gap-tip">Highlight your experience with AI-powered platforms and data-driven operations to demonstrate ability to grasp complex technical domains.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6: Generate Tailored CV -->
+            <div class="journey-step">
+                <div class="journey-text">
+                    <div class="journey-num">Step 6</div>
+                    <h3>Generate a tailored CV, apply with confidence</h3>
+                    <p>One click generates a <strong>personalized CV optimized for that specific job</strong>. Two versions: ATS-optimized for automated screening, and a polished human-eye version for recruiters. Tested against real ATS platforms &mdash; employees can't apply without generating one first, ensuring every application is their best shot.</p>
+                </div>
+                <div class="journey-visual">
+                    <div class="jv-bar"><div class="jv-dot"></div><div class="jv-dot"></div><div class="jv-dot"></div></div>
+                    <div class="jv-body jv-cv-gen">
+                        <div class="jv-cv-preview">
+                            <div class="jv-cv-page">
+                                <div class="cv-line title"></div>
+                                <div class="cv-line primary"></div>
+                                <div class="cv-line long"></div>
+                                <div class="cv-line med"></div>
+                                <div class="cv-line long"></div>
+                                <div class="cv-line short"></div>
+                                <div class="cv-line long"></div>
+                                <div class="cv-line med"></div>
+                                <div class="cv-line long"></div>
+                                <div class="cv-line short"></div>
+                                <div class="jv-cv-label-badge ats">ATS-Optimized</div>
+                            </div>
+                            <div class="jv-cv-page" style="border-color: var(--primary-50);">
+                                <div class="cv-line title"></div>
+                                <div class="cv-line primary" style="width: 40%;"></div>
+                                <div class="cv-line long"></div>
+                                <div class="cv-line med"></div>
+                                <div class="cv-line long"></div>
+                                <div class="cv-line short"></div>
+                                <div class="cv-line long"></div>
+                                <div class="cv-line med"></div>
+                                <div class="cv-line long"></div>
+                                <div class="cv-line short"></div>
+                                <div class="jv-cv-label-badge">Human-Eye</div>
+                            </div>
+                        </div>
+                        <div class="jv-cv-title">CV tailored for this role</div>
+                        <div class="jv-cv-desc">Adapted to the job description, optimized for ATS scoring</div>
+                        <div class="jv-cv-checks">
+                            <div class="jv-cv-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Maps your skills to JD terminology</div>
+                            <div class="jv-cv-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Never fabricates &mdash; every claim is defensible</div>
+                            <div class="jv-cv-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Tested against real ATS platforms</div>
+                            <div class="jv-cv-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Scores 85%+ on Comeet, Greenhouse, Niloos</div>
                         </div>
                     </div>
                 </div>
@@ -1684,8 +2057,8 @@
                 <div class="feature-icon">
                     <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
                 </div>
-                <h3>"My Chances" &mdash; Radical Transparency</h3>
-                <p>For any job: not just why they match, but why they're <em>not</em> at 100%. Gaps, transferable skills, hidden gems. They know exactly where they stand before they apply.</p>
+                <h3>"Why You Match" &mdash; Radical Transparency</h3>
+                <p>For any job: an overview with score breakdown, skills mapped to the JD, hidden strengths they didn't know they had, and gaps with practical tips to close them before the interview.</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">
