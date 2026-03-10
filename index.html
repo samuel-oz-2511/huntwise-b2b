@@ -42,7 +42,11 @@
             background: var(--bg);
             -webkit-font-smoothing: antialiased;
             line-height: 1.6;
+            -webkit-text-size-adjust: 100%;
+            overflow-x: hidden;
         }
+
+        img { max-width: 100%; height: auto; }
 
         /* ─── NAV ─── */
         nav {
@@ -1556,17 +1560,111 @@
         }
 
         /* ─── RESPONSIVE ─── */
+
+        /* Tablet */
+        @media (max-width: 1024px) {
+            .journey-step { gap: 32px; }
+            .pricing-cards { max-width: 700px; }
+        }
+
+        /* Mobile */
         @media (max-width: 768px) {
-            .stats-inner { grid-template-columns: repeat(2, 1fr); }
-            .stat { border-bottom: 1px solid var(--border-light); }
-            .comparison, .steps, .feature-grid, .pricing-cards {
-                grid-template-columns: 1fr;
-            }
-            .hero { padding: 110px 20px 60px; }
+            /* Nav */
+            .nav-inner { height: 64px; }
+            .logo img { height: 48px; }
+            .nav-links { gap: 12px; }
             .nav-links a.hide-mobile { display: none; }
+            .nav-cta { padding: 10px 20px; font-size: 14px; }
+
+            /* Hero */
+            .hero { padding: 100px 20px 50px; }
+            .hero h1 { font-size: 32px; letter-spacing: -1px; }
+            .hero p { font-size: 16px; margin-bottom: 28px; }
+            .hero-actions { flex-direction: column; gap: 10px; }
+            .hero-actions .btn { width: 100%; justify-content: center; }
+            .hero-sub { flex-direction: column; gap: 8px; }
+
+            /* Stats */
+            .stats-inner { grid-template-columns: repeat(2, 1fr); }
+            .stat { padding: 20px 16px; border-bottom: 1px solid var(--border-light); }
+            .stat-num { font-size: 24px; }
+            .stat-label { font-size: 12px; }
+
+            /* Sections */
+            .section { padding: 60px 20px; }
+            .section-header { margin-bottom: 36px; }
+            .section-title { font-size: 26px; }
+            .section-desc { font-size: 15px; }
+
+            /* Comparison */
+            .comparison { grid-template-columns: 1fr; }
+            .comp-card { padding: 24px 20px; }
+
+            /* Steps */
+            .steps { grid-template-columns: 1fr; gap: 14px; }
+            .step { padding: 24px 20px; }
+
+            /* Features */
+            .feature-grid { grid-template-columns: 1fr; gap: 12px; }
+            .feature { padding: 22px 20px; }
+
+            /* Product Journey */
+            .journey { padding: 60px 20px; }
+            .journey-steps { gap: 48px; }
             .journey-step { grid-template-columns: 1fr; gap: 24px; }
             .journey-step.reverse .journey-text { order: 1; }
             .journey-step.reverse .journey-visual { order: 2; }
+            .journey-text h3 { font-size: 22px; }
+            .journey-text p { font-size: 14px; }
+
+            /* Journey Visuals */
+            .jv-body { padding: 20px 16px; }
+            .jv-analyzing { padding: 24px 16px; }
+            .jv-stepper { padding: 10px 12px; gap: 8px; }
+            .jv-stepper-line { width: 20px; }
+            .jv-stepper-label { font-size: 10px; }
+            .jv-matches { padding: 28px 16px; }
+            .jv-match-num { font-size: 48px; }
+            .jv-dashboard { padding: 12px; }
+            .jv-job { padding: 12px; gap: 10px; }
+            .jv-job-tags { flex-wrap: wrap; }
+            .jv-match-modal { padding: 16px; }
+            .jv-modal-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .jv-mtab { padding: 8px 10px; font-size: 11px; white-space: nowrap; }
+            .jv-score-big { font-size: 40px; }
+            .jv-cv-preview { gap: 8px; }
+            .jv-cv-page { width: 85px; height: 115px; }
+
+            /* Testimonial */
+            .quote-card { padding: 28px 24px; }
+            .quote-text { font-size: 15px; }
+
+            /* Pricing */
+            .pricing-cards { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+            .price-card { padding: 28px 24px; }
+            .price-card .price { font-size: 36px; }
+
+            /* Final CTA */
+            .final-cta { padding: 60px 20px; }
+            .final-cta h2 { font-size: 26px; }
+            .final-cta p { font-size: 15px; }
+            .final-cta .btn-white { width: 100%; justify-content: center; padding: 14px 24px; }
+
+            /* Footer */
+            footer { padding: 24px 20px; }
+        }
+
+        /* Small phones */
+        @media (max-width: 400px) {
+            .nav-inner { height: 56px; }
+            .logo img { height: 40px; }
+            .nav-cta { padding: 8px 16px; font-size: 13px; }
+            .hero h1 { font-size: 28px; }
+            .stats-inner { grid-template-columns: 1fr; }
+            .jv-stepper { flex-wrap: wrap; justify-content: center; }
+            .jv-stepper-line { display: none; }
+            .jv-cv-page { width: 75px; height: 100px; }
+            .pricing-cards { max-width: 100%; }
         }
     </style>
 </head>
