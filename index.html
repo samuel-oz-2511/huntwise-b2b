@@ -1,0 +1,1824 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HuntWise for Teams — Outplacement That Actually Works</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --primary-dark: #4338CA;
+            --primary-light: #EEF2FF;
+            --primary-50: #E0E7FF;
+            --text-dark: #111827;
+            --text: #374151;
+            --text-light: #6B7280;
+            --text-muted: #9CA3AF;
+            --bg: #FAFBFF;
+            --white: #FFFFFF;
+            --border: #E5E7EB;
+            --border-light: #F3F4F6;
+            --green: #22C55E;
+            --green-bg: #F0FDF4;
+            --green-border: #BBF7D0;
+            --red: #EF4444;
+            --red-bg: #FEF2F2;
+            --red-border: #FECACA;
+            --radius: 16px;
+            --radius-sm: 10px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+            --shadow: 0 4px 16px rgba(0,0,0,0.06);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-light);
+            z-index: 100;
+            padding: 0 24px;
+        }
+
+        .nav-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.3px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: #fff;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-light);
+            transition: color 0.15s;
+        }
+
+        .nav-links a:hover { color: var(--text-dark); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: inherit;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            padding: 10px 22px;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-large {
+            padding: 14px 32px;
+            font-size: 16px;
+            border-radius: 12px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            padding: 10px 22px;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            border: 1.5px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-light);
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            padding: 130px 24px 80px;
+            text-align: center;
+            background: linear-gradient(180deg, #FFFFFF 0%, var(--bg) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(79,70,229,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 7px 16px;
+            border-radius: 100px;
+            margin-bottom: 28px;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-size: clamp(34px, 5vw, 56px);
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--text-dark);
+            max-width: 700px;
+            margin: 0 auto 20px;
+            letter-spacing: -1.5px;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: clamp(16px, 1.8vw, 19px);
+            color: var(--text-light);
+            max-width: 560px;
+            margin: 0 auto 36px;
+            line-height: 1.65;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .hero-sub {
+            margin-top: 20px;
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .hero-sub span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .hero-sub svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--green);
+            fill: none;
+            stroke-width: 2.5;
+        }
+
+        /* ─── STATS ─── */
+        .stats {
+            padding: 0 24px;
+            margin-top: -10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stats-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding: 0;
+        }
+
+        .stat {
+            padding: 28px 20px;
+            text-align: center;
+            border-right: 1px solid var(--border-light);
+        }
+
+        .stat:last-child { border-right: none; }
+
+        .stat-num {
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* ─── SECTION UTILS ─── */
+        .section {
+            padding: 90px 24px;
+        }
+
+        .section-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .section-label {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(26px, 3.5vw, 38px);
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -0.8px;
+            line-height: 1.2;
+            margin-bottom: 14px;
+        }
+
+        .section-desc {
+            font-size: 17px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.65;
+        }
+
+        /* ─── COMPARISON ─── */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .comp-card {
+            padding: 32px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .comp-card.old {
+            background: var(--red-bg);
+            border-color: var(--red-border);
+        }
+
+        .comp-card.new {
+            background: var(--green-bg);
+            border-color: var(--green-border);
+        }
+
+        .comp-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .comp-card.old h3 { color: var(--red); }
+        .comp-card.new h3 { color: #16A34A; }
+
+        .comp-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .comp-card li {
+            font-size: 14.5px;
+            color: var(--text);
+            padding-left: 26px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .comp-card.old li::before {
+            content: "\2717";
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .comp-card.new li::before {
+            content: "\2713";
+            position: absolute;
+            left: 0;
+            color: #16A34A;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        /* ─── STEPS ─── */
+        .section.how { background: var(--white); }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .step {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            text-align: center;
+            transition: box-shadow 0.2s, border-color 0.2s;
+        }
+
+        .step:hover {
+            border-color: var(--primary-50);
+            box-shadow: var(--shadow);
+        }
+
+        .step-num {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 18px;
+        }
+
+        .step h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .step p {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* ─── FEATURES ─── */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .feature {
+            background: var(--white);
+            padding: 28px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .feature:hover {
+            border-color: var(--primary-50);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--primary-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .feature-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--primary);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .feature h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .feature p {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* ─── PRODUCT JOURNEY ─── */
+        .journey {
+            padding: 90px 24px;
+            background: var(--white);
+        }
+
+        .journey-steps {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 64px;
+        }
+
+        .journey-step {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .journey-step.reverse .journey-text { order: 2; }
+        .journey-step.reverse .journey-visual { order: 1; }
+
+        .journey-text {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .journey-num {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--primary);
+        }
+
+        .journey-num::before {
+            content: '';
+            width: 24px;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 1px;
+        }
+
+        .journey-text h3 {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -0.5px;
+            line-height: 1.25;
+        }
+
+        .journey-text p {
+            font-size: 15px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .journey-visual {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .jv-bar {
+            background: var(--border-light);
+            padding: 8px 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .jv-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border);
+        }
+
+        .jv-body {
+            padding: 28px 24px;
+        }
+
+        /* Journey: Upload */
+        .jv-upload {
+            text-align: center;
+        }
+
+        .jv-upload-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .jv-upload-flow .active {
+            color: var(--primary);
+        }
+
+        .jv-upload-flow .dot {
+            width: 5px;
+            height: 5px;
+            background: var(--border);
+            border-radius: 50%;
+        }
+
+        .jv-upload-box {
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            padding: 32px 20px;
+            margin-bottom: 16px;
+        }
+
+        .jv-upload-icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 10px;
+            background: var(--primary-light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .jv-upload-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--primary);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+        }
+
+        .jv-upload-box .title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+        }
+
+        .jv-upload-box .sub {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .jv-upload-btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .jv-upload-trust {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 14px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* Journey: Analyzing */
+        .jv-analyzing {
+            text-align: center;
+            padding: 36px 24px;
+        }
+
+        .jv-stepper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 24px;
+            margin-bottom: 28px;
+            display: inline-flex;
+        }
+
+        .jv-stepper-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .jv-stepper-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .jv-stepper-circle.done {
+            background: var(--green);
+            color: #fff;
+        }
+
+        .jv-stepper-circle.active {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .jv-stepper-circle.pending {
+            border: 2px solid var(--border);
+            color: var(--text-muted);
+            background: transparent;
+        }
+
+        .jv-stepper-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .jv-stepper-line {
+            width: 36px;
+            height: 2px;
+            background: var(--border);
+            margin-bottom: 20px;
+        }
+
+        .jv-skill-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .jv-skill {
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 5px 14px;
+            border-radius: 100px;
+            animation: fadeUp 0.4s ease both;
+        }
+
+        .jv-skill:nth-child(2) { animation-delay: 0.1s; }
+        .jv-skill:nth-child(3) { animation-delay: 0.2s; }
+        .jv-skill:nth-child(4) { animation-delay: 0.3s; }
+        .jv-skill:nth-child(5) { animation-delay: 0.4s; }
+        .jv-skill:nth-child(6) { animation-delay: 0.5s; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .jv-progress-label {
+            font-size: 13px;
+            color: var(--text-light);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .jv-progress-bar {
+            height: 6px;
+            background: var(--border-light);
+            border-radius: 3px;
+            overflow: hidden;
+            max-width: 260px;
+            margin: 0 auto;
+        }
+
+        .jv-progress-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--green) 100%);
+        }
+
+        /* Journey: Matches */
+        .jv-matches {
+            text-align: center;
+            padding: 40px 24px;
+            position: relative;
+        }
+
+        .jv-confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .confetti-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .jv-match-num {
+            font-size: 64px;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -2px;
+            line-height: 1;
+            position: relative;
+        }
+
+        .jv-match-label {
+            font-size: 15px;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-top: 6px;
+            position: relative;
+        }
+
+        .jv-match-check {
+            width: 44px;
+            height: 44px;
+            background: var(--green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            position: relative;
+        }
+
+        .jv-match-check svg {
+            width: 22px;
+            height: 22px;
+            stroke: #fff;
+            fill: none;
+            stroke-width: 3;
+            stroke-linecap: round;
+        }
+
+        /* Journey: Dashboard */
+        .jv-dashboard { padding: 16px; }
+
+        .jv-job-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .jv-job {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: border-color 0.15s;
+        }
+
+        .jv-job:first-child {
+            border-color: var(--primary-50);
+            box-shadow: 0 0 0 1px var(--primary-50);
+        }
+
+        .jv-job-logo {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-light);
+            flex-shrink: 0;
+        }
+
+        .jv-job-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .jv-job-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-dark);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .jv-job-company {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .jv-job-tags {
+            display: flex;
+            gap: 4px;
+        }
+
+        .jv-tag {
+            font-size: 10px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .jv-tag.ft {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .jv-tag.loc {
+            background: var(--border-light);
+            color: var(--text-light);
+        }
+
+        .jv-job-match {
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .jv-job-match.vg {
+            background: #DCFCE7;
+            color: #16A34A;
+        }
+
+        .jv-job-match.good {
+            background: #DBEAFE;
+            color: #2563EB;
+        }
+
+        /* Journey: Job Detail / Actions */
+        .jv-detail { padding: 20px; }
+
+        .jv-detail-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .jv-detail-logo {
+            width: 44px;
+            height: 44px;
+            background: var(--border-light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--text-light);
+            flex-shrink: 0;
+        }
+
+        .jv-detail-info h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .jv-detail-info .sub {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .jv-detail-match {
+            display: inline-block;
+            background: #DCFCE7;
+            color: #16A34A;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 6px;
+            margin-top: 4px;
+        }
+
+        .jv-actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .jv-action {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 8px;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .jv-action svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--text-light);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+        }
+
+        .jv-action.highlight {
+            border-color: var(--primary-50);
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .jv-action.highlight svg {
+            stroke: var(--primary);
+        }
+
+        .jv-feature-tabs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            background: var(--border-light);
+            border-radius: 10px;
+            padding: 4px;
+        }
+
+        .jv-ftab {
+            padding: 10px 6px;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .jv-ftab.active {
+            background: var(--white);
+            color: var(--primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .jv-ftab.highlight {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .jv-ftab svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+        }
+
+        /* ─── TESTIMONIAL ─── */
+        .section.testimonial { background: var(--white); }
+
+        .quote-card {
+            max-width: 680px;
+            margin: 0 auto;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 36px 40px;
+            position: relative;
+        }
+
+        .quote-mark {
+            font-size: 48px;
+            color: var(--primary);
+            font-family: Georgia, serif;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .quote-text {
+            font-size: 17px;
+            color: var(--text);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        .quote-attr {
+            margin-top: 20px;
+            font-size: 14px;
+            color: var(--text-muted);
+            font-style: normal;
+            font-weight: 500;
+        }
+
+        /* ─── PRICING ─── */
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            text-align: center;
+            transition: box-shadow 0.2s, border-color 0.2s;
+        }
+
+        .price-card:hover {
+            box-shadow: var(--shadow);
+        }
+
+        .price-card.featured {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 1px var(--primary), var(--shadow);
+            position: relative;
+        }
+
+        .price-badge {
+            position: absolute;
+            top: -11px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 14px;
+            border-radius: 100px;
+            letter-spacing: 0.3px;
+        }
+
+        .price-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .price-card .price-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .price-card .price {
+            font-size: 44px;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -1.5px;
+            line-height: 1;
+        }
+
+        .price-card .price-unit {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .price-card ul {
+            list-style: none;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+
+        .price-card li {
+            font-size: 14px;
+            color: var(--text);
+            padding-left: 24px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .price-card li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            background: var(--green);
+            border-radius: 50%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6.5 11.5L3.5 8.5M6.5 11.5L12.5 5.5' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+            background-size: 12px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* ─── FINAL CTA ─── */
+        .final-cta {
+            padding: 80px 24px;
+            text-align: center;
+            background: var(--text-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(79,70,229,0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .final-cta h2 {
+            font-size: clamp(28px, 3.5vw, 40px);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 14px;
+            letter-spacing: -0.8px;
+            position: relative;
+        }
+
+        .final-cta p {
+            font-size: 17px;
+            color: #9CA3AF;
+            max-width: 500px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .final-cta .btn-white {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            color: var(--text-dark);
+            padding: 14px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .final-cta .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            padding: 28px 24px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            background: var(--white);
+            border-top: 1px solid var(--border-light);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .stats-inner { grid-template-columns: repeat(2, 1fr); }
+            .stat { border-bottom: 1px solid var(--border-light); }
+            .comparison, .steps, .feature-grid, .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+            .hero { padding: 110px 20px 60px; }
+            .nav-links a.hide-mobile { display: none; }
+            .journey-step { grid-template-columns: 1fr; gap: 24px; }
+            .journey-step.reverse .journey-text { order: 1; }
+            .journey-step.reverse .journey-visual { order: 2; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            Huntwise
+        </a>
+        <div class="nav-links">
+            <a href="#journey" class="hide-mobile">See the Product</a>
+            <a href="#features" class="hide-mobile">Features</a>
+            <a href="#pricing" class="hide-mobile">Pricing</a>
+            <a href="https://huntwise-frontend-376610797809.us-central1.run.app/" class="btn btn-primary" target="_blank">Try It Free</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-badge">For HR &amp; People Teams</div>
+    <h1>Outplacement that <em>actually</em> gets people hired</h1>
+    <p>Give departing employees an AI career platform that matches them to real jobs, reveals where they stand, and generates tailored CVs &mdash; in minutes, not months.</p>
+    <div class="hero-actions">
+        <a href="https://huntwise-frontend-376610797809.us-central1.run.app/" class="btn btn-primary btn-large" target="_blank">See It In Action &rarr;</a>
+        <a href="mailto:samuel@huntwise.ai?subject=HuntWise for Teams — Pilot Request" class="btn btn-outline btn-large">Request a Pilot</a>
+    </div>
+    <div class="hero-sub">
+        <span><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Pay only for activated employees</span>
+        <span><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> No integration needed</span>
+        <span><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Free pilot available</span>
+    </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+    <div class="stats-inner">
+        <div class="stat">
+            <div class="stat-num">27K+</div>
+            <div class="stat-label">Active jobs matched</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">90%+</div>
+            <div class="stat-label">Top ATS scores</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">&lt;5 min</div>
+            <div class="stat-label">Signup to first match</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">24/7</div>
+            <div class="stat-label">Self-serve, always on</div>
+        </div>
+    </div>
+</section>
+
+<!-- PRODUCT JOURNEY -->
+<section class="journey" id="journey">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-label">The Employee Experience</div>
+            <div class="section-title">From CV upload to interview &mdash; in minutes</div>
+            <div class="section-desc">Here's exactly what your employees experience. No training needed. No learning curve.</div>
+        </div>
+
+        <div class="journey-steps">
+
+            <!-- Step 1: Upload -->
+            <div class="journey-step">
+                <div class="journey-text">
+                    <div class="journey-num">Step 1</div>
+                    <h3>Upload a CV, that's it</h3>
+                    <p>Employees upload their CV or LinkedIn PDF. One click, 30 seconds. The platform handles everything else &mdash; parsing roles, extracting skills, mapping seniority. GDPR compliant, 256-bit encryption, data never sold.</p>
+                </div>
+                <div class="journey-visual">
+                    <div class="jv-bar"><div class="jv-dot"></div><div class="jv-dot"></div><div class="jv-dot"></div></div>
+                    <div class="jv-body jv-upload">
+                        <div class="jv-upload-flow">
+                            <span class="active">Upload CV</span>
+                            <span class="dot"></span>
+                            <span>Get Matched</span>
+                            <span class="dot"></span>
+                            <span>Tailor Your CV</span>
+                        </div>
+                        <div class="jv-upload-box">
+                            <div class="jv-upload-icon">
+                                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+                            </div>
+                            <div class="title">Click to upload your CV</div>
+                            <div class="sub">or drag and drop &middot; PDF, DOC up to 10MB</div>
+                        </div>
+                        <div class="jv-upload-btn">Upload &amp; Continue &rarr;</div>
+                        <div class="jv-upload-trust">
+                            <span>256-bit encryption</span>
+                            <span>&middot;</span>
+                            <span>GDPR compliant</span>
+                            <span>&middot;</span>
+                            <span>Data never sold</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: AI Analyzing -->
+            <div class="journey-step reverse">
+                <div class="journey-text">
+                    <div class="journey-num">Step 2</div>
+                    <h3>AI extracts skills &amp; finds matches</h3>
+                    <p>Our engine analyzes the CV, extracts key skills like "Strategy", "Collaboration", "Project Management" &mdash; then deep-matches against 27K+ live job listings. Not keyword search. Real semantic matching.</p>
+                </div>
+                <div class="journey-visual">
+                    <div class="jv-bar"><div class="jv-dot"></div><div class="jv-dot"></div><div class="jv-dot"></div></div>
+                    <div class="jv-body jv-analyzing">
+                        <div class="jv-stepper">
+                            <div class="jv-stepper-step">
+                                <div class="jv-stepper-circle done">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                                </div>
+                                <div class="jv-stepper-label">Analyzing CV</div>
+                            </div>
+                            <div class="jv-stepper-line"></div>
+                            <div class="jv-stepper-step">
+                                <div class="jv-stepper-circle active">2</div>
+                                <div class="jv-stepper-label">Finding Matches</div>
+                            </div>
+                        </div>
+                        <div class="jv-skill-cloud">
+                            <span class="jv-skill">Collaboration</span>
+                            <span class="jv-skill">Strategy</span>
+                            <span class="jv-skill">Project Management</span>
+                            <span class="jv-skill">Data Analysis</span>
+                            <span class="jv-skill">Team Leadership</span>
+                            <span class="jv-skill">Budgeting</span>
+                        </div>
+                        <div class="jv-progress-label">Searching job listings...</div>
+                        <div class="jv-progress-bar">
+                            <div class="jv-progress-fill" style="width: 57%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Matches Found -->
+            <div class="journey-step">
+                <div class="journey-text">
+                    <div class="journey-num">Step 3</div>
+                    <h3>53 matches &mdash; instantly</h3>
+                    <p>Within minutes, your employees see dozens of real, relevant job matches. Each scored and ranked by fit quality. Not a generic job board &mdash; every match is personalized to their specific background.</p>
+                </div>
+                <div class="journey-visual">
+                    <div class="jv-bar"><div class="jv-dot"></div><div class="jv-dot"></div><div class="jv-dot"></div></div>
+                    <div class="jv-body jv-matches">
+                        <div class="jv-confetti">
+                            <div class="confetti-dot" style="top:12%;left:8%;background:#4F46E5;width:7px;height:7px;"></div>
+                            <div class="confetti-dot" style="top:20%;left:25%;background:#EF4444;width:5px;height:5px;"></div>
+                            <div class="confetti-dot" style="top:8%;left:45%;background:#F59E0B;width:6px;height:6px;"></div>
+                            <div class="confetti-dot" style="top:18%;left:65%;background:#22C55E;width:5px;height:5px;"></div>
+                            <div class="confetti-dot" style="top:10%;left:80%;background:#8B5CF6;width:7px;height:7px;"></div>
+                            <div class="confetti-dot" style="top:25%;left:90%;background:#F59E0B;width:5px;height:5px;"></div>
+                            <div class="confetti-dot" style="top:5%;left:15%;background:#22C55E;width:4px;height:4px;"></div>
+                            <div class="confetti-dot" style="top:15%;left:55%;background:#4F46E5;width:6px;height:6px;"></div>
+                        </div>
+                        <div class="jv-match-check">
+                            <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+                        </div>
+                        <div class="jv-match-num">53</div>
+                        <div class="jv-match-label">matches found!</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Dashboard -->
+            <div class="journey-step reverse">
+                <div class="journey-text">
+                    <div class="journey-num">Step 4</div>
+                    <h3>A dashboard of ranked opportunities</h3>
+                    <p>Every match is scored: "Very Good", "Good", with real company logos and job details. Employees can filter, search, save favorites, and track their application status &mdash; all in one place.</p>
+                </div>
+                <div class="journey-visual">
+                    <div class="jv-bar"><div class="jv-dot"></div><div class="jv-dot"></div><div class="jv-dot"></div></div>
+                    <div class="jv-body jv-dashboard">
+                        <div class="jv-job-list">
+                            <div class="jv-job">
+                                <div class="jv-job-logo">IC</div>
+                                <div class="jv-job-info">
+                                    <div class="jv-job-title">IC Production Manager</div>
+                                    <div class="jv-job-company">Amazon Web Services (AWS)</div>
+                                </div>
+                                <div class="jv-job-tags">
+                                    <span class="jv-tag ft">Full-Time</span>
+                                    <span class="jv-tag loc">Manager</span>
+                                </div>
+                                <div class="jv-job-match vg">Very Good</div>
+                            </div>
+                            <div class="jv-job">
+                                <div class="jv-job-logo">DO</div>
+                                <div class="jv-job-info">
+                                    <div class="jv-job-title">Director Of Operations And Support</div>
+                                    <div class="jv-job-company">Helfy</div>
+                                </div>
+                                <div class="jv-job-tags">
+                                    <span class="jv-tag ft">Full-Time</span>
+                                    <span class="jv-tag loc">Director</span>
+                                </div>
+                                <div class="jv-job-match good">Good</div>
+                            </div>
+                            <div class="jv-job">
+                                <div class="jv-job-logo">DB</div>
+                                <div class="jv-job-info">
+                                    <div class="jv-job-title">Director Of Business Operations</div>
+                                    <div class="jv-job-company">SkyOpt Solutions</div>
+                                </div>
+                                <div class="jv-job-tags">
+                                    <span class="jv-tag ft">Full-Time</span>
+                                    <span class="jv-tag loc">Director</span>
+                                </div>
+                                <div class="jv-job-match good">Good</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Analyze + Generate CV -->
+            <div class="journey-step">
+                <div class="journey-text">
+                    <div class="journey-num">Step 5</div>
+                    <h3>Understand gaps, generate a tailored CV, apply</h3>
+                    <p>For any job, employees see <strong>"My Chances"</strong> &mdash; not just why they match, but where they fall short and how to address it. Then they <strong>generate an ATS-optimized CV</strong> tailored to that specific role. They can't apply without one &mdash; ensuring every application is their best shot. Track everything from save to interview, built in.</p>
+                </div>
+                <div class="journey-visual">
+                    <div class="jv-bar"><div class="jv-dot"></div><div class="jv-dot"></div><div class="jv-dot"></div></div>
+                    <div class="jv-body jv-detail">
+                        <div class="jv-detail-header">
+                            <div class="jv-detail-logo">IC</div>
+                            <div class="jv-detail-info">
+                                <h4>IC Production Manager</h4>
+                                <div class="sub">Amazon Web Services (AWS) &middot; Haifa, Israel</div>
+                                <div class="jv-detail-match">Very Good</div>
+                            </div>
+                        </div>
+                        <div class="jv-actions">
+                            <div class="jv-action">
+                                <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
+                                Save
+                            </div>
+                            <div class="jv-action">
+                                <svg viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>
+                                Applied
+                            </div>
+                            <div class="jv-action">
+                                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                                Interview
+                            </div>
+                            <div class="jv-action">
+                                <svg viewBox="0 0 24 24"><path d="M21 8v13H3V8M1 3h22v5H1zM10 12h4"/></svg>
+                                Archive
+                            </div>
+                        </div>
+                        <div class="jv-feature-tabs">
+                            <div class="jv-ftab active">
+                                <svg viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                                My Chances
+                            </div>
+                            <div class="jv-ftab highlight">
+                                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                                Generate CV
+                            </div>
+                            <div class="jv-ftab">
+                                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg>
+                                Cover Letter
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-label">The Problem</div>
+            <div class="section-title">Traditional outplacement is broken</div>
+            <div class="section-desc">Companies spend $1,000&ndash;5,000 per employee on packages that barely get used. Generic templates and a few coaching calls don't get people hired.</div>
+        </div>
+        <div class="comparison">
+            <div class="comp-card old">
+                <h3>Traditional Outplacement</h3>
+                <ul>
+                    <li>$1,000&ndash;5,000 per employee &mdash; paid upfront</li>
+                    <li>You pay whether employees use it or not</li>
+                    <li>3&ndash;5 coaching calls spread over months</li>
+                    <li>Generic resume templates</li>
+                    <li>No real job matching</li>
+                    <li>Low engagement &mdash; money wasted</li>
+                </ul>
+            </div>
+            <div class="comp-card new">
+                <h3>HuntWise for Teams</h3>
+                <ul>
+                    <li>Only pay for employees who actually onboard</li>
+                    <li>Zero risk &mdash; no usage, no charge</li>
+                    <li>Results from day one</li>
+                    <li>CV tailored per job, ATS-optimized</li>
+                    <li>Deep-matched to 27K+ live roles</li>
+                    <li>High engagement &mdash; because it works</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section how" id="how">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-label">How It Works</div>
+            <div class="section-title">Up and running in minutes</div>
+            <div class="section-desc">No IT integration. No onboarding sessions. Just share a link.</div>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <h3>You share access codes</h3>
+                <p>We generate personalized promo codes for your employees. Hand them out however you like &mdash; email, Slack, exit package.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <h3>They onboard themselves</h3>
+                <p>Employees sign up, upload their CV, and the platform takes over. You're only charged once they complete onboarding.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <h3>They start getting hired</h3>
+                <p>Instant job matches. Gap analysis per role. Tailored CVs on demand. Real results, fast. You only paid for people who actually used it.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-label">What Employees Get</div>
+            <div class="section-title">Everything they need to land their next role</div>
+        </div>
+        <div class="feature-grid">
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                </div>
+                <h3>Smart Job Matching</h3>
+                <p>Deep matching against 27K+ active roles using proprietary engines. Distance-based location filtering shows jobs within their preferred commute radius.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                </div>
+                <h3>"My Chances" &mdash; Radical Transparency</h3>
+                <p>For any job: not just why they match, but why they're <em>not</em> at 100%. Gaps, transferable skills, hidden gems. They know exactly where they stand before they apply.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                </div>
+                <h3>ATS-Optimized CVs</h3>
+                <p>One click generates a CV tailored to a specific job. Tested against real ATS platforms. Employees can't apply without generating a tailored CV first &mdash; ensuring quality applications.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                </div>
+                <h3>Guided Onboarding</h3>
+                <p>The platform walks employees through analyzing their first match before showing the full dashboard. No tutorials needed. Built-in gamification ensures they actually engage &mdash; not just sign up and forget.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HR BENEFITS -->
+<section class="section how">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-label">Why HR Teams Choose HuntWise</div>
+            <div class="section-title">The outplacement problem, solved</div>
+            <div class="section-desc">Traditional outplacement fails because employees don't engage. We fixed that by design.</div>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num" style="background: var(--green);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                </div>
+                <h3>High Engagement by Design</h3>
+                <p>Guided onboarding forces employees to analyze their first match before seeing results. They experience value immediately &mdash; so they keep coming back.</p>
+            </div>
+            <div class="step">
+                <div class="step-num" style="background: var(--green);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <h3>Quality Applications Only</h3>
+                <p>Employees can't apply without generating a tailored CV first. Every application they send is optimized &mdash; meaning faster hiring, better outcomes for your people.</p>
+            </div>
+            <div class="step">
+                <div class="step-num" style="background: var(--green);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <h3>Zero Setup, Instant Value</h3>
+                <p>No IT integration, no SSO, no training sessions. Share a link. Employees are matched to jobs within 5 minutes of uploading their CV. Your work is done.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="section testimonial">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-label">Early Results</div>
+            <div class="section-title">Real outcomes in the first week</div>
+        </div>
+        <div class="quote-card">
+            <div class="quote-mark">&ldquo;</div>
+            <div class="quote-text">It really helped me knowing my gaps in advance. I could research a bit before the interview and didn't come in clueless. I got invited to 2 interviews for 2 different roles.</div>
+            <div class="quote-attr">Beta user &mdash; first week of launch, zero ad spend</div>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-label">Pricing</div>
+            <div class="section-title">Only pay for employees who actually use it</div>
+            <div class="section-desc">Each employee gets a personalized access code. You're only charged when they complete onboarding &mdash; never before. Zero waste, zero risk.</div>
+        </div>
+        <div class="pricing-cards">
+            <div class="price-card">
+                <h3>Starter</h3>
+                <div class="price-desc">Job matching &amp; insights</div>
+                <div class="price">$79</div>
+                <div class="price-unit">per activated employee</div>
+                <ul>
+                    <li>Charged only after onboarding</li>
+                    <li>Smart job matching</li>
+                    <li>Unlimited match analyses</li>
+                    <li>3 months access</li>
+                </ul>
+                <a href="mailto:samuel@huntwise.ai?subject=HuntWise for Teams — Starter" class="btn btn-outline" style="width:100%; justify-content:center;">Get Started</a>
+            </div>
+            <div class="price-card featured">
+                <div class="price-badge">Most Popular</div>
+                <h3>Professional</h3>
+                <div class="price-desc">Full career toolkit</div>
+                <div class="price">$199</div>
+                <div class="price-unit">per activated employee</div>
+                <ul>
+                    <li>Charged only after onboarding</li>
+                    <li>Everything in Starter</li>
+                    <li>ATS-optimized CV generation</li>
+                    <li>20 tailored CVs per employee</li>
+                    <li>6 months access</li>
+                </ul>
+                <a href="mailto:samuel@huntwise.ai?subject=HuntWise for Teams — Professional" class="btn btn-primary" style="width:100%; justify-content:center;">Get Started</a>
+            </div>
+            <div class="price-card">
+                <h3>Enterprise</h3>
+                <div class="price-desc">For large transitions</div>
+                <div class="price">Custom</div>
+                <div class="price-unit">50+ employees</div>
+                <ul>
+                    <li>Charged only after onboarding</li>
+                    <li>Everything in Professional</li>
+                    <li>HR analytics dashboard</li>
+                    <li>Dedicated success manager</li>
+                    <li>12 months access</li>
+                </ul>
+                <a href="mailto:samuel@huntwise.ai?subject=HuntWise for Teams — Enterprise" class="btn btn-outline" style="width:100%; justify-content:center;">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+    <h2>See why it works in 5 minutes</h2>
+    <p>Upload a CV, see the matches, run a gap analysis. Experience what your employees will get.</p>
+    <a href="https://huntwise-frontend-376610797809.us-central1.run.app/" class="btn-white" target="_blank">Try the Platform &rarr;</a>
+</section>
+
+<footer>
+    &copy; 2026 HuntWise. All rights reserved.
+</footer>
+
+</body>
+</html>
